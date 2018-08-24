@@ -1,6 +1,8 @@
 import os
 from flask import Flask
 from . import db
+from . import auth
+
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True) 
@@ -32,7 +34,11 @@ def create_app(test_config=None):
         pass
 
 
+    # 注册db
     db.init_app(app)
+    #   注册用于认证的蓝图
+    app.register_blueprint(auth.bp)
+
     # a simple page that says hello
     #@app.route() 创建一个简单的路由
     @app.route('/hello')
