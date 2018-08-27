@@ -2,6 +2,7 @@ import os
 from flask import Flask
 from . import db
 from . import auth
+from . import blog
 
 def create_app(test_config=None):
     # create and configure the app
@@ -38,7 +39,9 @@ def create_app(test_config=None):
     db.init_app(app)
     #   注册用于认证的蓝图
     app.register_blueprint(auth.bp)
-
+    app.register_blueprint(blog.bp)
+    
+    app.add_url_rule('/', endpoint='index')
     # a simple page that says hello
     #@app.route() 创建一个简单的路由
     @app.route('/hello')
