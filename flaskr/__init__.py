@@ -40,7 +40,8 @@ def create_app(test_config=None):
     #   注册用于认证的蓝图
     app.register_blueprint(auth.bp)
     app.register_blueprint(blog.bp)
-    
+    #和author 相比，blog 蓝图么有设置url_
+
     app.add_url_rule('/', endpoint='index')
     # a simple page that says hello
     #@app.route() 创建一个简单的路由
